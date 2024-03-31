@@ -1,7 +1,8 @@
 class Spark {
-    static COLOR_LIGHT = [255, 255, 0];
-    static COLOR_DARK = [160, 160, 0];
-    static SIZE = 4;
+    static COLOR = [255, 255, 0];
+
+    static MIN_SIZE = 1;
+    static MAX_SIZE = 4
 
     static SPREAD = 3;
     static JUMP = 5;
@@ -16,6 +17,7 @@ class Spark {
         this.v = createVector(random(-1, 1) * Spark.SPREAD, random(-1, 1) * Spark.JUMP);
         this.a = createVector(0, Spark.GRAVITY);
 
+        this.size = random(Spark.MIN_SIZE, Spark.MAX_SIZE);
         this.life = random(Spark.MIN_LIFE, Spark.MAX_LIFE);
     }
 
@@ -27,13 +29,8 @@ class Spark {
     }
 
     draw() {
-        stroke(Spark.COLOR_DARK);
-        strokeWeight(Spark.SIZE);
-
-        point(this.pos);
-
-        stroke(Spark.COLOR_LIGHT);
-        strokeWeight(Spark.SIZE / 2);
+        stroke(Spark.COLOR);
+        strokeWeight(this.size);
 
         point(this.pos);
     }
